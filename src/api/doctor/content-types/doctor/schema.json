@@ -1,0 +1,92 @@
+{
+  "kind": "collectionType",
+  "collectionName": "doctors",
+  "info": {
+    "singularName": "doctor",
+    "pluralName": "doctors",
+    "displayName": "Doctor",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "fio": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email"
+    },
+    "start_working": {
+      "type": "date"
+    },
+    "birthday_date": {
+      "type": "date"
+    },
+    "sex": {
+      "type": "enumeration",
+      "enum": [
+        "m",
+        "f"
+      ]
+    },
+    "type": {
+      "type": "string"
+    },
+    "speciality": {
+      "type": "string"
+    },
+    "additional_speciality": {
+      "type": "string"
+    },
+    "time_first_visit": {
+      "type": "string"
+    },
+    "time_second_visit": {
+      "type": "string"
+    },
+    "delay_appointment": {
+      "type": "string"
+    },
+    "child_doctor": {
+      "type": "boolean"
+    },
+    "adult_doctor": {
+      "type": "boolean"
+    },
+    "avaliable_clinics": {
+      "type": "string"
+    },
+    "academic_degree": {
+      "type": "string"
+    },
+    "photo": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "additional_info": {
+      "type": "blocks"
+    },
+    "education": {
+      "type": "blocks"
+    },
+    "continuing_education_courses": {
+      "type": "blocks"
+    },
+    "active_status": {
+      "type": "boolean"
+    },
+    "slug": {
+      "type": "string",
+      "unique": true
+    }
+  }
+}
