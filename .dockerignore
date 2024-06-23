@@ -1,0 +1,14 @@
+node_modules
+npm-debug.log
+Dockerfile
+.git
+.dockerignore
+.strapi
+.tmp
+.build
+.env
+.env.example
+.eslintrc
+.eslinignore
+.gitignore
+.Readme.md

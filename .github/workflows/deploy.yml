@@ -1,0 +1,61 @@
+name: Build and Deploy Docker Image for Strapi
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build Docker image
+        run: |
+          docker build -t strapi:latest .
+          docker save strapi:latest -o strapi.tar
+
+      - name: Upload Docker image to GitHub artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: strapi-image
+          path: strapi.tar
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download Docker image from GitHub artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: strapi-image
+          path: .
+
+      - name: Copy Docker image to VPS
+        uses: appleboy/scp-action@v0.1.0
+        with:
+          source: "strapi.tar"
+          target: "/root/docker_images/"
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          password: ${{ secrets.VPS_PASSWORD }}
+          port: ${{ secrets.VPS_PORT }}
+
+      - name: Deploy to VPS
+        uses: appleboy/ssh-action@v0.1.0
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          password: ${{ secrets.VPS_PASSWORD }}
+          port: ${{ secrets.VPS_PORT }}
+          script: |
+            cd /root/docker_images
+            docker load -i strapi.tar
+            docker stop strapi || true
+            docker rm strapi || true
+            docker run -d -p 3003:3000 --name strapi strapi:latest
+          debug: true

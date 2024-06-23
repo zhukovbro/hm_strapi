@@ -362,85 +362,6 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
-export interface ApiDoctorDoctor extends Schema.CollectionType {
-  collectionName: 'doctors';
-  info: {
-    singularName: 'doctor';
-    pluralName: 'doctors';
-    displayName: 'Doctor';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    fio: Attribute.String;
-    email: Attribute.Email;
-    start_working: Attribute.Date;
-    birthday_date: Attribute.Date;
-    sex: Attribute.Enumeration<['m', 'f']>;
-    type: Attribute.String;
-    speciality: Attribute.String;
-    additional_speciality: Attribute.String;
-    time_first_visit: Attribute.String;
-    time_second_visit: Attribute.String;
-    delay_appointment: Attribute.String;
-    child_doctor: Attribute.Boolean;
-    adult_doctor: Attribute.Boolean;
-    avaliable_clinics: Attribute.String;
-    academic_degree: Attribute.String;
-    photo: Attribute.Media;
-    additional_info: Attribute.Blocks;
-    education: Attribute.Blocks;
-    continuing_education_courses: Attribute.Blocks;
-    active_status: Attribute.Boolean;
-    slug: Attribute.String & Attribute.Unique;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::doctor.doctor',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::doctor.doctor',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiPostPost extends Schema.CollectionType {
-  collectionName: 'posts';
-  info: {
-    singularName: 'post';
-    pluralName: 'posts';
-    displayName: 'Post';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    Title: Attribute.String;
-    Description: Attribute.String;
-    body: Attribute.Blocks;
-    slug: Attribute.UID<'api::post.post', 'Title'>;
-    published_time: Attribute.DateTime;
-    cover: Attribute.Media;
-    thumb: Attribute.Media;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'api::post.post', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<'api::post.post', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-  };
-}
-
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -867,6 +788,119 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiDepartmentDepartment extends Schema.CollectionType {
+  collectionName: 'departments';
+  info: {
+    singularName: 'department';
+    pluralName: 'departments';
+    displayName: 'Department';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    department: Attribute.String;
+    full_text: Attribute.Blocks;
+    background_image: Attribute.Media;
+    slug: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::department.department',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::department.department',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiDoctorDoctor extends Schema.CollectionType {
+  collectionName: 'doctors';
+  info: {
+    singularName: 'doctor';
+    pluralName: 'doctors';
+    displayName: 'Doctor';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    fio: Attribute.String;
+    email: Attribute.Email;
+    start_working: Attribute.Date;
+    birthday_date: Attribute.Date;
+    sex: Attribute.Enumeration<['m', 'f']>;
+    type: Attribute.String;
+    speciality: Attribute.String;
+    additional_speciality: Attribute.String;
+    time_first_visit: Attribute.String;
+    time_second_visit: Attribute.String;
+    delay_appointment: Attribute.String;
+    child_doctor: Attribute.Boolean;
+    adult_doctor: Attribute.Boolean;
+    avaliable_clinics: Attribute.String;
+    academic_degree: Attribute.String;
+    photo: Attribute.Media;
+    additional_info: Attribute.Blocks;
+    education: Attribute.Blocks;
+    continuing_education_courses: Attribute.Blocks;
+    active_status: Attribute.Boolean;
+    slug: Attribute.String & Attribute.Unique;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::doctor.doctor',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::doctor.doctor',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPostPost extends Schema.CollectionType {
+  collectionName: 'posts';
+  info: {
+    singularName: 'post';
+    pluralName: 'posts';
+    displayName: 'Post';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Title: Attribute.String;
+    Description: Attribute.String;
+    body: Attribute.Blocks;
+    slug: Attribute.UID<'api::post.post', 'Title'>;
+    published_time: Attribute.DateTime;
+    cover: Attribute.Media;
+    thumb: Attribute.Media;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::post.post', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::post.post', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -877,8 +911,6 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
-      'api::doctor.doctor': ApiDoctorDoctor;
-      'api::post.post': ApiPostPost;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
@@ -887,6 +919,9 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::department.department': ApiDepartmentDepartment;
+      'api::doctor.doctor': ApiDoctorDoctor;
+      'api::post.post': ApiPostPost;
     }
   }
 }
