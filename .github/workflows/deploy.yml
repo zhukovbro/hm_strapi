@@ -57,16 +57,6 @@ jobs:
             docker load -i strapi.tar
             docker stop strapi || true
             docker rm strapi || true
-            echo "HOST=${{ secrets.HOST }}"
-            echo "PORT=${{ secrets.PORT }}"
-            echo "APP_KEYS=${{ secrets.APP_KEYS }}"
-            echo "API_TOKEN_SALT=${{ secrets.API_TOKEN_SALT }}"
-            echo "ADMIN_JWT_SECRET=${{ secrets.ADMIN_JWT_SECRET }}"
-            echo "TRANSFER_TOKEN_SALT=${{ secrets.TRANSFER_TOKEN_SALT }}"
-            echo "DATABASE_CLIENT=${{ secrets.DATABASE_CLIENT }}"
-            echo "DATABASE_FILENAME=${{ secrets.DATABASE_FILENAME }}"
-            echo "JWT_SECRET=${{ secrets.JWT_SECRET }}"
-            echo "URL=${{ secrets.URL }}"
             docker run -d -p 3005:1337 --name strapi \
               -e HOST='${{ secrets.HOST }}' \
               -e PORT='${{ secrets.PORT }}' \
@@ -78,7 +68,7 @@ jobs:
               -e DATABASE_FILENAME='${{ secrets.DATABASE_FILENAME }}' \
               -e JWT_SECRET='${{ secrets.JWT_SECRET }}' \
               -e URL='${{ secrets.URL }}' \
-              -v strapi-db:/app/.tmp/data.db \
+              -v strapi-db:/app/.tmp \
               strapi:latest
             docker logs strapi
           debug: true
