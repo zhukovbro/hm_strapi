@@ -1,5 +1,7 @@
 FROM node:current-alpine3.19@sha256:5207b5fe5a54c78aa9542ce0b83a940301eb12d2477eee0dd1faeb74c7c96b34
 
+RUN apk add --no-cache python3 make g++
+
 WORKDIR /app
 
 COPY package*.json ./
