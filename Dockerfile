@@ -1,6 +1,6 @@
 FROM node:current-alpine3.19@sha256:5207b5fe5a54c78aa9542ce0b83a940301eb12d2477eee0dd1faeb74c7c96b34
 
-RUN apk add --no-cache python3 make g++
+RUN apk add --no-cache python3 make g++ sqlite
 
 WORKDIR /app
 
@@ -10,10 +10,15 @@ RUN npm install && npm cache clean --force
 
 COPY . .
 
-RUN npm run build && \
-    npm uninstall npm && \
-    rm -rf /var/cache/apk/* /tmp/* /var/tmp/*
+RUN npm run build
 
-EXPOSE 4000
+# Установите переменные окружения для Strapi
+ENV NODE_ENV=production
+ENV HOST=0.0.0.0
+ENV PORT=1337
 
-CMD ["npm", "run start"]
+# Откройте порт для Strapi
+EXPOSE 1337
+
+
+CMD ["npm", "start"]
