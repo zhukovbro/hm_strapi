@@ -57,5 +57,7 @@ jobs:
             docker load -i strapi.tar
             docker stop strapi || true
             docker rm strapi || true
-            docker run -d -p 3005:1337 --name strapi strapi:latest -e APP_KEYS=${{ secrets.APP_KEYS }}
+            docker run -d -p 3005:1337 --name strapi \
+              -e APP_KEYS='${{ secrets.APP_KEYS }}' \
+              strapi:latest
           debug: true
