@@ -4,7 +4,6 @@ Dockerfile
 .git
 .dockerignore
 .strapi
-.tmp
 .build
 .env
 .env.example
