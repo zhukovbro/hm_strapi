@@ -1,4 +1,4 @@
-FROM node:current-alpine3.19@sha256:5207b5fe5a54c78aa9542ce0b83a940301eb12d2477eee0dd1faeb74c7c96b34
+FROM node:18-alpine3.20@sha256:e37da457874383fa9217067867ec85fe8fe59f0bfa351ec9752a95438680056e
 
 RUN apk add --no-cache python3 make g++ sqlite
 
