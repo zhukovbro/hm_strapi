@@ -1,4 +1,4 @@
-name: Build and Deploy Docker Image for Strapi47
+name: Build and Deploy Docker Image for Strapi
 
 on:
   push:
@@ -78,6 +78,7 @@ jobs:
               -e DATABASE_FILENAME='${{ secrets.DATABASE_FILENAME }}' \
               -e JWT_SECRET='${{ secrets.JWT_SECRET }}' \
               -e URL='${{ secrets.URL }}' \
+              -v strapi-db:/app/.tmp/data.db \
               strapi:latest
             docker logs strapi
           debug: true
