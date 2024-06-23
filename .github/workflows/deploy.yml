@@ -58,6 +58,18 @@ jobs:
             docker stop strapi || true
             docker rm strapi || true
             docker run -d -p 3005:1337 --name strapi \
+              -e HOST='${{ secrets.HOST }}' \
+              -e PORT='${{ secrets.PORT }}' \
               -e APP_KEYS='${{ secrets.APP_KEYS }}' \
+              -e API_TOKEN_SALT='${{ secrets.API_TOKEN_SALT }}' \
+              -e ADMIN_JWT_SECRET='${{ secrets.ADMIN_JWT_SECRET }}' \
+              -e TRANSFER_TOKEN_SALT='${{ secrets.TRANSFER_TOKEN_SALT }}' \
+              -e DATABASE_CLIENT='${{ secrets.DATABASE_CLIENT }}' \
+              -e DATABASE_FILENAME='${{ secrets.DATABASE_FILENAME }}' \
+              -e JWT_SECRET='${{ secrets.JWT_SECRET }}' \
               strapi:latest
           debug: true
+
+      - name: Clean up Docker
+        run: |
+          docker system prune -a -f
