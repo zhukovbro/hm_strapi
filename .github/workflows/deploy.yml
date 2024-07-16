@@ -58,17 +58,19 @@ jobs:
             docker stop strapi || true
             docker rm strapi || true
             docker run -d -p 3005:1337 --name strapi \
-              -e HOST='${{ secrets.HOST }}' \
-              -e PORT='${{ secrets.PORT }}' \
               -e APP_KEYS='${{ secrets.APP_KEYS }}' \
               -e API_TOKEN_SALT='${{ secrets.API_TOKEN_SALT }}' \
               -e ADMIN_JWT_SECRET='${{ secrets.ADMIN_JWT_SECRET }}' \
               -e TRANSFER_TOKEN_SALT='${{ secrets.TRANSFER_TOKEN_SALT }}' \
-              -e DATABASE_CLIENT='${{ secrets.DATABASE_CLIENT }}' \
-              -e DATABASE_FILENAME='${{ secrets.DATABASE_FILENAME }}' \
+              -e DATABASE_CLIENT='postgres' \
+              -e DATABASE_HOST='94.198.216.72' \
+              -e DATABASE_PORT='5432' \
+              -e DATABASE_NAME='strapi' \
+              -e DATABASE_USERNAME='strapi_user' \
+              -e DATABASE_PASSWORD='EOpe$wsxdp+wnby' \
+              -e DATABASE_SSL='false' \
               -e JWT_SECRET='${{ secrets.JWT_SECRET }}' \
-              -e URL='${{ secrets.URL }}' \
-              -v strapi-db:/app/.tmp \
+              -v strapi-public:/srv/app/public \
               strapi:latest
             docker logs strapi
           debug: true
