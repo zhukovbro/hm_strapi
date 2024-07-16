@@ -6,6 +6,8 @@ WORKDIR /app
 
 COPY package*.json ./
 
+RUN npm install pg
+
 RUN npm install && npm cache clean --force
 
 COPY . .
