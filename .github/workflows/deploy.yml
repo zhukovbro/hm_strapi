@@ -1,4 +1,4 @@
-name: Build and Deploy Docker Image for Strapi3
+name: Build and Deploy Docker Image for Strapi345
 
 on:
   push:
